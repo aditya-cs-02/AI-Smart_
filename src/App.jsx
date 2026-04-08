@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react'
-import { supabase } from './supabaseClient'
-import Auth from './Auth'
-import Dashboard from './Dashboard' // Assuming you have your dashboard built here
+import React, { useState, useEffect } from 'react' // Ensure 'React' is here
+import { supabase } from './supabaseClient.js'
+import Auth from './Auth.jsx'
+import Dashboard from './Dashboard.jsx'
 
 export default function App() {
   const [session, setSession] = useState(null)
