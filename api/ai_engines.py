@@ -1,11 +1,11 @@
 import math
 from collections import Counter
-import google.generativeai as genai
+import requests
 import os
 from dotenv import load_dotenv
 
 load_dotenv()
-genai.configure(api_key=os.environ.get("GEMINI_API_KEY"))
+GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
 
 def calculate_match_score(resume_text, job_description="Looking for a skilled software engineer with Python, React, and Database experience."):
     """Calculates TF-IDF cosine similarity match score using pure Python."""
@@ -53,3 +53,16 @@ def run_comprehensive_analysis(resume_text):
         "passed": 5 if score > 70 else 2,
         "needs_review": len(warnings)
     }
+
+# --- For Future Use: Direct Gemini API Call ---
+def ask_gemini(prompt):
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key={GEMINI_API_KEY}"
+    headers = {'Content-Type': 'application/json'}
+    data = {
+        "contents": [{"parts": [{"text": prompt}]}]
+    }
+    try:
+        response = requests.post(url, headers=headers, json=data)
+        return response.json()['candidates'][0]['content']['parts'][0]['text']
+    except Exception as e:
+        return f"Error connecting to AI: {e}"
