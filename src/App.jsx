@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react' // Ensure 'React' is here
+import { useState, useEffect } from 'react'  // 'React' default import not needed in React 17+
 import { supabase } from './supabaseClient.js'
 import Auth from './Auth.jsx'
 import Dashboard from './Dashboard.jsx'
@@ -26,22 +26,36 @@ export default function App() {
     await supabase.auth.signOut()
   }
 
-  // If no session exists, show the login screen
   if (!session) {
     return <Auth />
   }
 
-  // If logged in, show the application and pass the user data
   return (
     <div>
-      <div style={{ padding: '10px 20px', display: 'flex', justifyContent: 'space-between', background: '#f8fafc', borderBottom: '1px solid #e2e8f0' }}>
+      <div style={{
+        padding: '10px 20px',
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',           // ✅ added: vertically centers email + button
+        background: '#f8fafc',
+        borderBottom: '1px solid #e2e8f0'
+      }}>
         <span>Logged in as: <strong>{session.user.email}</strong></span>
-        <button onClick={handleLogout} style={{ background: '#ef4444', color: 'white', border: 'none', padding: '5px 15px', borderRadius: '6px', cursor: 'pointer' }}>
+        <button
+          onClick={handleLogout}
+          style={{
+            background: '#ef4444',
+            color: 'white',
+            border: 'none',
+            padding: '5px 15px',
+            borderRadius: '6px',
+            cursor: 'pointer'
+          }}
+        >
           Log Out
         </button>
       </div>
-      
-      {/* Load your main application UI */}
+
       <Dashboard user={session.user} />
     </div>
   )
