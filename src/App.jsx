@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState, useEffect } from 'react'  // 'React' default import not needed in React 17+
 import { supabase } from './supabaseClient.js'
 import Auth from './Auth.jsx'
