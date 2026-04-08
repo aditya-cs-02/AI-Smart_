@@ -5,7 +5,7 @@ import os
 from dotenv import load_dotenv
 
 load_dotenv()
-GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
+GEMINI_API_KEY = os.environ.get("AIzaSyBgLEMJqkywTEnN14e5eRHHmT3blsBnsgk")
 
 def calculate_match_score(resume_text, job_description="Looking for a skilled software engineer with Python, React, and Database experience."):
     """Calculates TF-IDF cosine similarity match score using pure Python."""
