@@ -3,6 +3,6 @@ uvicorn
 python-multipart
 pypdf
 google-generativeai
-scikit-learn
 python-docx
 python-dotenv
+supabase
